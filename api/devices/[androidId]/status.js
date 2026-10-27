@@ -4,35 +4,60 @@ const devices = [
     status: "0",
     is_banned: "0",
     feji_enabled: "0",
-    can_use_feji: "0"
+    can_use_feji: "0",
+    update_banner_enabled: "0",
+    update_banner_message: "",
+    update_banner_force: "0"
   },
   {
     android_id: "046a23f3afd5abf4",
     status: "1",
     is_banned: "0",
     feji_enabled: "0",
-    can_use_feji: "0"
+    can_use_feji: "0",
+    update_banner_enabled: "0",
+    update_banner_message: "",
+    update_banner_force: "0"
   },
-   {
+  {
     android_id: "1db9f63e1983d079",
     status: "1",
     is_banned: "0",
     feji_enabled: "0",
-    can_use_feji: "0"
+    can_use_feji: "0",
+    update_banner_enabled: "0",
+    update_banner_message: "",
+    update_banner_force: "0"
   },
   {
     android_id: "b8c2900ebd3feacf",
     status: "1",
     is_banned: "0",
     feji_enabled: "0",
-    can_use_feji: "0"
+    can_use_feji: "0",
+    update_banner_enabled: "0",
+    update_banner_message: "",
+    update_banner_force: "0"
   },
   {
     android_id: "d5f09b7f35b8384e",
     status: "1",
     is_banned: "0",
     feji_enabled: "0",
-    can_use_feji: "0"
+    can_use_feji: "0",
+    update_banner_enabled: "0",
+    update_banner_message: "",
+    update_banner_force: "0"
+  },
+  {
+    android_id: "a96d14d3db632e07",
+    status: "1",
+    is_banned: "0",
+    feji_enabled: "0",
+    can_use_feji: "0",
+    update_banner_enabled: "0",
+    update_banner_message: "",
+    update_banner_force: "0"
   }
 ];
 
