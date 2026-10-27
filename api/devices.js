@@ -13,6 +13,13 @@
     feji_enabled: "0",
     can_use_feji: "0"
   },
+    {
+    android_id: "ddd0555c665c0440",
+    status: "1",
+    is_banned: "0",
+    feji_enabled: "0",
+    can_use_feji: "0"
+  },
   {
     android_id: "b8c2900ebd3feacf",
     status: "1",
