@@ -14,7 +14,7 @@
     can_use_feji: "0"
   },
   {
-    android_id: "046a23f3afd5abf4",
+    android_id: "69f292f7c9e58598",
     status: "1",
     is_banned: "0",
     feji_enabled: "0",
