@@ -1,67 +1,12 @@
-const devices = [
-  {
-    android_id: "705121e036ceaa95",
-    status: "0",
-    is_banned: "0",
-    feji_enabled: "0",
-    can_use_feji: "0",
-    update_banner_enabled: "0",
-    update_banner_message: "",
-    update_banner_force: "0"
-  },
-  {
-    android_id: "69f292f7c9e58598", //me
-    status: "1",
-    is_banned: "0",
-    feji_enabled: "0",
-    can_use_feji: "0",
-    update_banner_enabled: "0",
-    update_banner_message: "",
-    update_banner_force: "0"
-  },
-  {
-    android_id: "ddd0555c665c0440",
-    status: "1",
-    is_banned: "0",
-    feji_enabled: "0",
-    can_use_feji: "0",
-    update_banner_enabled: "0",
-    update_banner_message: "",
-    update_banner_force: "0"
-  },
-  {
-    android_id: "b8c2900ebd3feacf",
-    status: "1",
-    is_banned: "0",
-    feji_enabled: "0",
-    can_use_feji: "0",
-    update_banner_enabled: "0",
-    update_banner_message: "",
-    update_banner_force: "0"
-  },
-  {
-    android_id: "d5f09b7f35b8384e",
-    status: "1",
-    is_banned: "0",
-    feji_enabled: "0",
-    can_use_feji: "0",
-    update_banner_enabled: "0",
-    update_banner_message: "",
-    update_banner_force: "0"
-  },
-  {
-    android_id: "a96d14d3db632e07",
-    status: "1",
-    is_banned: "0",
-    feji_enabled: "0",
-    can_use_feji: "0",
-    update_banner_enabled: "0",
-    update_banner_message: "",
-    update_banner_force: "0"
-  }
-];
 
-export default function handler(req, res) {
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY
+);
+
+export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
 
@@ -69,12 +14,57 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { androidId } = req.query;
-  const device = devices.find(d => d.android_id === androidId);
+  const androidId = Array.isArray(req.query.androidId)
+    ? req.query.androidId[0]
+    : req.query.androidId;
 
-  if (!device) {
-    return res.status(404).json({ error: 'Device not found' });
+  if (!androidId) {
+    return res.status(400).json({ error: 'Missing Android ID' });
   }
 
-  return res.status(200).json({ data: device });
+  try {
+    const { data: device, error } = await supabase
+      .from('devices')
+      .select(`
+        android_id,
+        status,
+        is_banned,
+        feji_enabled,
+        can_use_feji,
+        update_banner_enabled,
+        update_banner_message,
+        update_banner_force
+      `)
+      .eq('android_id', androidId)
+      .maybeSingle();
+
+    if (error) {
+      console.error('Supabase status lookup failed:', error);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (!device) {
+      return res.status(404).json({ error: 'Device not found' });
+    }
+
+    return res.status(200).json({
+      data: {
+        android_id: device.android_id,
+        status: String(device.status ?? 0),
+        is_banned: String(device.is_banned ?? 0),
+        feji_enabled: String(device.feji_enabled ?? 0),
+        can_use_feji: String(device.can_use_feji ?? 0),
+        update_banner_enabled: String(
+          device.update_banner_enabled ?? 0
+        ),
+        update_banner_message: device.update_banner_message ?? '',
+        update_banner_force: String(
+          device.update_banner_force ?? 0
+        )
+      }
+    });
+  } catch (err) {
+    console.error('Status endpoint error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }

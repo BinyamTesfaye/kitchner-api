@@ -1,1 +1,1 @@
-{"name": "kitchner-api", "version": "1.0.0", "private": true}
+{"name":"kitchner-api","version":"1.0.0","private":true,"dependencies":{"@supabase/supabase-js":"^2.118.0"}}
