@@ -10,8 +10,8 @@ const devices = [
     update_banner_force: "0"
   },
   {
-    android_id: "69f292f7c9e58598",
-    status: "0",
+    android_id: "69f292f7c9e58598", //me
+    status: "1",
     is_banned: "0",
     feji_enabled: "0",
     can_use_feji: "0",
@@ -20,7 +20,7 @@ const devices = [
     update_banner_force: "0"
   },
   {
-    android_id: "1db9f63e1983d079",
+    android_id: "ddd0555c665c0440",
     status: "1",
     is_banned: "0",
     feji_enabled: "0",
