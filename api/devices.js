@@ -15,7 +15,7 @@
   },
   {
     android_id: "69f292f7c9e58598",
-    status: "1",
+    status: "0",
     is_banned: "0",
     feji_enabled: "0",
     can_use_feji: "0"
